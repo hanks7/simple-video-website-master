@@ -54,11 +54,9 @@ public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao{
 
 	@Override
 	public Object ReadSingle(final String targetName,final String propertyName, final Object value) {
-		// TODO Auto-generated method stub
 		return (Object) getHibernateTemplate().execute(new HibernateCallback<Object>() {
 			/*doInHibernate()。session的创建和销毁，一切都在程序内部完成。*/
-			public Object doInHibernate(Session session)
-					throws HibernateException, SQLException {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				String hql = "from "+targetName+" as "+targetName+" where "+targetName+"." + propertyName + "=:value";
 				Query query = session.createQuery(hql);
 				query.setParameter("value", value);
